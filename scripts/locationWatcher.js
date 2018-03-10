@@ -1,6 +1,6 @@
-var output = document.getElementById("out");
-var arrow = document.getElementById("arrow");
-var userBearing = 0;
+// var output = document.getElementById("out");
+// var arrow = document.getElementById("arrow");
+// var userBearing = 0;
 var lastPosition;
 var passed = 0;
 var distThresh = 0.001;
@@ -13,16 +13,17 @@ function success(position) {
   var latitude  = position.coords.latitude;
   var longitude = position.coords.longitude;
 
-  userBearing = bearing(
-    lastPosition.coords.latitude,
-    lastPosition.coords.longitude,
-    latitude,
-    longitude
-  );
+  // userBearing = bearing(
+  //   lastPosition.coords.latitude,
+  //   lastPosition.coords.longitude,
+  //   latitude,
+  //   longitude
+  // );
 
-  var bear = bearing(latitude, longitude, 45.0535179, 21.37234803464725);
+  var bear = bearing(latitude, longitude, 41.9534282, 21.4760617);
+  bear = getRelativeBearing(bear, userBearing);
   //km
-  // passed += distance(latitude, longitude, lastPosition.coords.latitude, lastPosition.coords.longitude) || 0;
+  var d = distance(latitude, longitude, 41.9534282, 21.4760617) || 0;
 
   // output.innerHTML += '<p><strong>Lat ' + latitude + '° ,Long ' + longitude + '°</strong></p>';
   //
@@ -36,8 +37,10 @@ function success(position) {
 
   // if (distance(latitude, longitude, lastPosition.coords.latitude, lastPosition.coords.longitude) < distThresh) { return; }
 
-  output.innerHTML = '<p><strong>bearing is: ' + userBearing +
-    '</strong></p><p><strong>position is:' + position.coords.latitude + ' ' + position.coords.longitude + '</strong></p>';
+  // console.log(position);
+  // console.log(userBearing);
+
+  output.innerHTML = '</strong></p><p><strong>user bearing is:' + userBearing + '</strong></p>';
   arrow.style.transform = 'rotate(' + userBearing + 'deg)';
 }
 
@@ -54,12 +57,24 @@ function geoFindMe() {
   navigator.geolocation.getCurrentPosition(success, error);
 }
 
-// setInterval(geoFindMe, 2000);
+setInterval(geoFindMe, 500, {timeout: 499});
 
-var geo_options = {
-  enableHighAccuracy: true,
-  maximumAge        : 60000,
-  timeout           : 5000
-};
+window.addEventListener("deviceorientation", onHeadingChange);
 
-var wpid = navigator.geolocation.watchPosition(success, error, geo_options);
+function onHeadingChange(event) {
+  userBearing = event.alpha;
+
+  if (typeof event.webkitCompassHeading !== "undefined") {
+    userBearing = event.webkitCompassHeading; //iOS non-standard
+  }
+
+  // console.log('heading: ' + heading);
+}
+
+// var geo_options = {
+//   enableHighAccuracy: false,
+//   maximumAge        : 1000,
+//   timeout           : 999
+// };
+
+// var wpid = navigator.geolocation.watchPosition(success, error, geo_options);

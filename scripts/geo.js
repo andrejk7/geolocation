@@ -1,4 +1,16 @@
+function getRelativeBearing(absBearing, userBearing) {
+  return Math.abs(absBearing - userBearing);
+}
+
+function round(value, decimals) {
+  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+}
+
 function distance(lat1, lon1, lat2, lon2) {
+  // lat1 = round(lat1, 5);
+  // lon1 = round(lon1, 5);
+  // lat2 = round(lat2, 5);
+  // lon2 = round(lat2, 5);
   var radlat1 = Math.PI * lat1/180
   var radlat2 = Math.PI * lat2/180
   var theta = lon1-lon2
@@ -24,6 +36,10 @@ function distance(lat1, lon1, lat2, lon2) {
  * @return int - The bearing between 0 and 360
  */
 function bearing(lat1,lng1,lat2,lng2) {
+    lat1 = round(lat1, 5);
+    lng1 = round(lng1, 5);
+    lat2 = round(lat2, 5);
+    lng2 = round(lng2, 5);
     var dLon = (lng2-lng1);
     var y = Math.sin(dLon) * Math.cos(lat2);
     var x = Math.cos(lat1)*Math.sin(lat2) - Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLon);
