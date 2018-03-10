@@ -1,4 +1,5 @@
 function success(position) {
+  userPosition = position;
   locationOutput.innerHTML = '<p><strong>lon: ' + position.coords.longitude + ' lat: ' + position.coords.latitude + '</strong></p>';
 }
 
