@@ -3,6 +3,7 @@ var output = document.getElementById("out");
 var arrow = document.getElementById("arrow");
 var locationOutput = document.getElementById("loc");
 var directionOutput = document.getElementById("dir");
+var versionOutput = document.getElementById("browser")
 var userBearing;
 var userPosition;
 var currentTarget = {
@@ -14,6 +15,7 @@ var trueBearing;
 var waypoints = [];
 var selectedWaypointIndex = -1;
 var distThresh = 5; //5 meters threshold
+var browserVersion;
 
 function updateDirection() {
   if (!userPosition) { return; }
