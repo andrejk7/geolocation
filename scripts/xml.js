@@ -13,7 +13,6 @@ function loadFileToElement()
     parser = new DOMParser();
     xmlDoc = parser.parseFromString(xmlHTTP.responseText,"text/xml");
 
-    // console.log(xmlDoc.getElementsByTagName("trkp"));
     mapWaypoints(xmlDoc);
 }
 
