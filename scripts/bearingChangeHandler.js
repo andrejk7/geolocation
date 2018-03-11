@@ -4,10 +4,11 @@ function redrawArrow() {
   var b = trueBearing - userBearing;
   if (b < 0) { b += 360; }
   arrow.style.transform = 'rotate(' + b + 'deg)';
+  writeBearing(b);
 }
 
-function writeBearing() {
-  output.innerHTML = '<p><strong>user bearing is:' + userBearing + '</strong></p>';
+function writeBearing(b) {
+  output.innerHTML = '<p><strong>bearing is:' + b + '</strong></p>';
 }
 
 function onHeadingChange(event) {
@@ -16,8 +17,6 @@ function onHeadingChange(event) {
   if (typeof event.webkitCompassHeading !== "undefined") {
     userBearing = event.webkitCompassHeading; //iOS non-standard
   }
-
-  writeBearing();
 }
 
 setInterval(redrawArrow, 40);

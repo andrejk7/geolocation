@@ -17,9 +17,9 @@ function geoFindMe() {
 }
 
 var geo_options = {
-  enableHighAccuracy: false,
-  maximumAge        : 1000,
-  timeout           : 999
+  enableHighAccuracy: true,
+  maximumAge        : 2000,
+  timeout           : 1999
 };
 
 var wpid = navigator.geolocation.watchPosition(success, error, geo_options);

@@ -19,7 +19,9 @@ function updateDirection() {
   var lat2 = currentTarget.latitude;
   var lon2 = currentTarget.longitude;
   trueBearing = bearing(lat1, lon1, lat2, lon2);
-  directionOutput.innerHTML = '<p><strong>Abs direction: ' + trueBearing + '</p></strong>';
+  var d = distance(lat1, lon1, lat2, lon2);
+  directionOutput.innerHTML = '<p><strong>Abs direction: ' + trueBearing + '</p></strong>' +
+                              '<p><strong>Distance: ' + d + '</p></strong>';
 }
 
 setInterval(updateDirection, 1000);
