@@ -11,6 +11,7 @@ var currentTarget = {
   longitude: 21.3905192
 }
 var trueBearing;
+var waypoints = [];
 
 function updateDirection() {
   if (!userPosition) { return; }
@@ -21,7 +22,8 @@ function updateDirection() {
   trueBearing = bearing(lat1, lon1, lat2, lon2);
   var d = distance(lat1, lon1, lat2, lon2);
   directionOutput.innerHTML = '<p><strong>Abs direction: ' + trueBearing + '</p></strong>' +
-                              '<p><strong>Distance: ' + d + '</p></strong>';
+                              '<p><strong>Distance: ' + d + '</p></strong>' +
+                              '<p><strong>Target: lon ' + lon2 + ' lat ' + lat2 + '</p></strong>';
 }
 
 setInterval(updateDirection, 1000);
