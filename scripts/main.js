@@ -6,10 +6,11 @@ var directionOutput = document.getElementById("dir");
 var userBearing;
 var userPosition;
 var currentTarget = {
-  //цементара Усје, ако некој го интригира
-  latitude: 41.9534282,
-  longitude: 21.4760617
+  //City mall, ако некој го интригира
+  latitude: 42.0046515,
+  longitude: 21.3905192
 }
+var trueBearing;
 
 function updateDirection() {
   if (!userPosition) { return; }
@@ -17,8 +18,8 @@ function updateDirection() {
   var lon1 = userPosition.coords.longitude;
   var lat2 = currentTarget.latitude;
   var lon2 = currentTarget.longitude;
-  var bear = bearing(lat1, lon1, lat2, lon2);
-  directionOutput.innerHTML = '<p><strong>Direction: ' + bear + '</p></strong>';
+  trueBearing = bearing(lat1, lon1, lat2, lon2);
+  directionOutput.innerHTML = '<p><strong>Abs direction: ' + trueBearing + '</p></strong>';
 }
 
 setInterval(updateDirection, 1000);
