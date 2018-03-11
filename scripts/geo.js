@@ -36,10 +36,10 @@ function distance(lat1, lon1, lat2, lon2) {
  * @return int - The bearing between 0 and 360
  */
 function bearing(lat1,lng1,lat2,lng2) {
-    lat1 = round(lat1, 5);
-    lng1 = round(lng1, 5);
-    lat2 = round(lat2, 5);
-    lng2 = round(lng2, 5);
+    // lat1 = round(lat1, 5);
+    // lng1 = round(lng1, 5);
+    // lat2 = round(lat2, 5);
+    // lng2 = round(lng2, 5);
     var dLon = (lng2-lng1);
     var y = Math.sin(dLon) * Math.cos(lat2);
     var x = Math.cos(lat1)*Math.sin(lat2) - Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLon);
