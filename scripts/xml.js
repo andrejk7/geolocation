@@ -1,9 +1,12 @@
 function loadFileToElement()
 {
+    var filename = location.hash ? location.hash : 'route1.xml';
+    filename = filename.replace('#', '');
+    var routePath = './routes/' + filename;
     var xmlHTTP = new XMLHttpRequest();
     try
     {
-    xmlHTTP.open("GET", './routes/route3.xml', false);
+    xmlHTTP.open("GET", routePath, false);
     xmlHTTP.send(null);
     }
     catch (e) {
