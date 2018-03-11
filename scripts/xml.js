@@ -27,7 +27,7 @@ function mapWaypoints(xml) {
     w.longitude = points[i].attributes[1].value;
     waypoints.push(w);
   }
-  currentTarget = waypoints[0];
+  selectedWaypointIndex = 0;
 }
 
 loadFileToElement();
